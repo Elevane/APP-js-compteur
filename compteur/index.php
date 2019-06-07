@@ -9,10 +9,11 @@
 </head>
 <body>
     <div id="all">
-    <h1>Compteur</h1>
+    <h1> Compteur </h1>
 
     <div id="conteneur">
         <div id="compteurA">
+        <p>temps</p>
     <!-- chiffre compteur de temps actuel-->
     <span id="compteur"><?php
     
@@ -25,21 +26,24 @@
         echo $row->value;
     }
     ?></span></div>
-
+    
 
     <!-- Menus de boutons-->
-    <div>
+    <div class="buttons">
         <button id="+1" class="plus">  1</button>
         <button id="+5"  class="plus">  5</button>
         <button id="+10"  class="plus">  10</button>
     </div>
 
-    <div>
+    <div class="buttons">
         <button id="-1"  class="moins">  1</button>
         <button id="-5" class="moins">  5</button>
         <button id="-10" class="moins">  10</button>
     </div>
     </div>
+    <div id="divcompteurJs">
+    <span id="compteurJs"> 0 </span>
+</div>
     <form action="save.php" method="POST">
         <input type="text" id="value" name="value" hidden>
         <input id="submit" type="submit">
@@ -85,6 +89,7 @@
 
 
         var compteur = document.getElementById('compteur');
+        var compteurJs = document.getElementById('compteurJs');
         //si on appuie sur un bouton
 
         //+1
@@ -108,7 +113,7 @@
         // fonctions d'ajout ou suppriession de valeur au compteur
         function plus(value){
             timeTranslate();
-            compteur.innerHTML = parseInt(compteur.innerHTML) + value;
+            compteurJs.innerHTML = parseInt(compteurJs.innerHTML) + value;
             timeChange();
         }
 
@@ -116,7 +121,7 @@
             
             timeTranslate();
             
-            compteur.innerHTML = parseInt(compteur.innerHTML) - value;
+            compteurJs.innerHTML = parseInt(compteurJs.innerHTML) - value;
             
             console.log(compteur.innerHTML);
             timeChange();
@@ -128,7 +133,7 @@
         form.addEventListener('click',function(){
             var input = document.getElementById('value');
             timeTranslate();
-            input.value = parseInt(compteur.innerHTML);
+            input.value = parseInt(compteurJs.innerHTML) + parseInt(compteur.innerHTML);
 
             
         })
@@ -139,15 +144,26 @@
         function timeChange(){
 
             var tempsMin = parseInt(compteur.innerHTML);
+            var tempsMinJs = parseInt(compteurJs.innerHTML);
 
             if(tempsMin > 59){
                 
                 var h = Math.floor(tempsMin / 60);
-                var min = Math.floor(tempsMin%60);
+                var min = Math.floor(tempsMin %60);
                 compteur.innerHTML = h + " h "+ min + " min"
             }
             else{
                 compteur.innerHTML = tempsMin + " min"
+            }
+
+            if(tempsMinJs > 59){
+                
+                var h = Math.floor(tempsMinJs / 60);
+                var min = Math.floor(tempsMinJs %60);
+                compteurJs.innerHTML = h + " h "+ min + " min"
+            }
+            else{
+                compteurJs.innerHTML = tempsMinJs + " min"
             }
 
         }
@@ -173,6 +189,28 @@
                 var m = tempsHmin.substr(0,3);
                 min = parseInt(m);
                 compteur.innerHTML = min;
+            }
+
+            var tempsHminJs = compteurJs.innerHTML;
+           // compteur js
+            if (tempsHminJs.length > 6){
+                var h = tempsHminJs.substr(0,1);
+                hour = parseInt(h);
+
+                var m = tempsHminJs.substr(4,2);
+                min = parseInt(m);
+
+                compteurJs.innerHTML = hour *60 + min;
+
+                
+            }
+
+            else if (tempsHminJs.length < 7 )
+            {
+                console.log("<<");
+                var m = tempsHminJs.substr(0,3);
+                min = parseInt(m);
+                compteurJs.innerHTML = min;
             }
 
             

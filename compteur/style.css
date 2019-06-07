@@ -34,12 +34,25 @@
             color: white;
             font-weight: 100;
         }
+
+        #divcompteurJs{
+            text-align: center;
+            margin: 20px;
+        }
+        #compteurJs{
+            font-size: 25px;
+            
+        }
+        #log{
+            margin: 100px 0;
+        }
         
         h1 {
-            padding: 100px 0;
-            font-size: 50px;
+            padding: 50px 0 100px 0;
+            font-size: 70px;
             text-align: center;
             color: #f4f6f9;
+            letter-spacing: 10px;
         }
         
         button {
@@ -77,13 +90,24 @@
         .plus:hover {
             background-color: #48E68B;
         }
+        #compteur{
+            margin: 0 0 50px 0;
+            font-size: 40px;
+            border: 0.5px solid white;
+            padding: 5px;
+        }
         
         #compteurA {
             text-align: center;
-            font-size: 40px;
+           
             padding: 20px;
+            margin: 0 0 50px 0;
         }
-        
+
+        #compteurA p{
+        position: relative;
+           top: 5px;
+        }
         form {
             display: flex;
             justify-content: center;
@@ -110,4 +134,9 @@
         form [type=submit]:hover {
             background-color: white;
             box-shadow: 0 5px 15px rgba(black, .1);
+        }
+        .buttons{
+            display: flex;
+            align-content: center;
+            justify-content: center;
         }
