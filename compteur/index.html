@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Compteur</title>
+</head>
+<body>
+    <div id="all">
+    <h1> Compteur </h1>
+
+    <div id="conteneur">
+        <div id="compteurA">
+        <p>temps</p>
+        <span hidden id="TimeInMinutes"></span>
+    <!-- chiffre compteur de temps actuel-->
+    <span id="compteur"></span></div>
+    
+
+    <!-- Menus de boutons-->
+    <div class="buttons">
+        <button id="+1" class="plus">1</button>
+        <button id="+5"  class="plus">5</button>
+        <button id="+10"  class="plus">10</button>
+    </div>
+
+    <div class="buttons">
+        <button id="-1"  class="moins">1</button>
+        <button id="-5" class="moins">5</button>
+        <button id="-10" class="moins">10</button>
+    </div>
+    </div>
+    <div id="divcompteurJs">
+    <span title="Temps ajouté ou retiré lors de la session active" id="compteurJs"> </span>
+</div>
+    <form action="save.php" method="POST">
+        <input type="text" id="value" name="value" hidden>
+        <input id="submit" type="submit">
+    </form>
+    </div>
+    <div id="log">
+
+        <table>
+            <tr>
+                <th>date</th>
+                <th>action</th>
+              
+            </tr></tr>
+
+    
+        </table>
+    </div>
+    <script src="jquery.js"></script>
+    
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            
+
+            
+        });
+        var compteurJs = $('#compteurJs');
+        var temps = $('#compteur');
+        var TimeInMinutes = $('#TimeInMinutes');
+
+        TimeInMinutes.text(0);
+        temps.text(0);
+        compteurJs.text(0);
+
+        $('.plus').on('click', function(){
+            
+            TimeInMinutes.text( parseInt(TimeInMinutes.html()) + parseInt(this.innerHTML));
+            temps.text(translate(TimeInMinutes.html()));
+            compteurJs.text(parseInt(compteurJs.html()) + parseInt(this.innerHTML));
+        });
+
+        $('.moins').on('click', function(){
+           
+            TimeInMinutes.text( parseInt(TimeInMinutes.html()) - parseInt(this.innerHTML));
+            temps.text(translate(TimeInMinutes.html()));
+            compteurJs.text(parseInt(compteurJs.html()) - parseInt(this.innerHTML));
+        });
+
+        function translate(mins){
+            mins = parseInt(mins);
+            var hours = Math.floor(mins / 60);          
+            var minutes = mins % 60;
+            
+            if(mins > 59){
+                
+                return hours + 'h'  + minutes;
+            }
+            else if(mins < -59){
+                if (mins != -60)hours = hours + 1;{}
+                
+                return hours + 'h'  + Math.abs(minutes);
+            }
+            else{
+                return mins;
+            }
+        }
+    </script>
+</body>
+</html> 

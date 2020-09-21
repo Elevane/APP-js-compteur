@@ -43,6 +43,7 @@
             font-size: 25px;
             
         }
+        
         #log{
             margin: 100px 0;
         }
@@ -157,4 +158,8 @@
             display: flex;
             align-content: center;
             justify-content: center;
+        }
+
+        #conteneur p {
+            margin-bottom: 10px;
         }

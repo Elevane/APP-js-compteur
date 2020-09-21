@@ -5,8 +5,8 @@
 // données de connection : 
 
 $user = "root"; // identifiant
- $mdp = ""; // pwd
-$serveur = "127.0.0.1"; // adresse ip du serveur de bdd
+$mdp = "password"; // pwd
+$serveur = "127.0.0.1:3308"; // adresse ip du serveur de bdd
 $bd = "compteur"; // nom de la base
 $dns="mysql:host=$serveur;dbname=$bd;charset=utf8"; // requete dns avec les infos précédement remplies
 
@@ -20,7 +20,7 @@ try
  }
 catch (PDOException $e)
 {
-	print"erreur avec la bdd : ".$e->getMessage()."<br/>"; // message d'erreur en cas d'echec de connexion
+	echo "<script>alert(". 'erreur avec la bdd :' .$e->getMessage().")</script>"; // message d'erreur en cas d'echec de connexion
 	die();
 }
  ?>
